@@ -1,69 +1,41 @@
-# React + TypeScript + Vite
+<div align="center">
+  <img src="./favicon.png" />
+  <h1>Anderson Toledo Martins Moreira</h1>
+</div>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<div align="center">
 
-Currently, two official plugins are available:
+[![Download PDF](https://img.shields.io/badge/Curriculum-US-blue?logo=adobeacrobatreader&logoColor=white)](https://docs.google.com/document/d/1I8T4Mkb61NsTKN14ZbT1mnQKAc9LqiiPtgrYf9ayH1c/edit?usp=sharing)
+[![Download PDF](https://img.shields.io/badge/Currículo-PT_br-darkgreen?logo=adobeacrobatreader&logoColor=white)](https://docs.google.com/document/d/1vnFlRP3myxexgHk5Y6XaCKQGETPQwCygPZqGSblwCXg/edit?usp=sharing)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+</div>
 
-## Expanding the ESLint configuration
+<div align="center">
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+[![LinkedIn](https://img.shields.io/badge/%20-LinkedIn-blue?color=3498db&labelColor=2980b9&logo=linkedin&logoColor=ffcc80)](https://www.linkedin.com/in/atmmoreira)
+[![Gmail](https://img.shields.io/badge/%20-atmmoreira.rj@gmail.com-black?color=c0392b&labelColor=ef5350&logo=gmail&logoColor=ffffff)](mailto:atmmoreira.rj@gmail.com?subject=From%20GitHub&cc=atmmoreira.rj@gmail&body=Hi,%20there.%20Found%20you%20from%20GitHub.)
+[![Phone](<https://img.shields.io/badge/-+55_(21)_9.9289.0362-black?color=2ecc71&labelColor=27ae60&logo=whatsapp&logoColor=ffffff>)](https://api.whatsapp.com/send?phone=5521992890362)
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+</div>
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## Objective
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+You're building a personal recipe management and meal planning application that helps home
+cooks organize their favorite recipes, plan weekly meals, and generate smart shopping lists.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Tecnologies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+# Technical Requirements
+- React with TypeScript.
+- State management (Context API, Redux, or anything else that works for you).
+- Responsive design that works on desktop, tablet, and mobile.
+- CSS-in-JS or styled-components (or Tailwind CSS).
+- Mock data - create realistic recipe data (at least 30+ recipes with various cuisines and dietary options).
+- Local storage persistence for meal plans and shopping lists.
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Bonus Features (Nice to Have)
+- Recipe import from URL functionality.
+- Unit tests for key components.
+- Deploy using Vercel (free tier).
 ```
