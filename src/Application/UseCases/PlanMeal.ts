@@ -1,4 +1,4 @@
-import { MealPlan, MealSlot } from "../../Dmain/Entities/MealPlan";
+import { MealPlan, MealSlot } from "../../Domain/Entities/MealPlan";
 
 export class PlanMeal {
   constructor(private mealPlan: MealPlan) {}
