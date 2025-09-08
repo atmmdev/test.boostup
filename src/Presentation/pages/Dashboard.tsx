@@ -9,6 +9,17 @@ import { MealPlanner } from "../components/MealPlanner";
 import { ShoppingListView } from "../components/ShoppingListView";
 import { RecipeModal } from "../components/RecipeModal";
 
+import { days, slots, type Day, type Slot } from "../components/_plannerTypes";
+
+function makeEmptyPlanner() {
+  const base: Record<Day, Record<Slot, { recipe?: Recipe }>> = {} as any;
+  for (const d of days) {
+    base[d] = {} as any;
+    for (const s of slots) base[d][s] = {};
+  }
+  return base;
+}
+
 export function Dashboard() {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [tab, setTab] = useState<"dashboard" | "planner" | "list">("dashboard");
@@ -17,7 +28,7 @@ export function Dashboard() {
   const [mealFilter, setMealFilter] = useState<"all" | "breakfast" | "lunch" | "dinner">("all");
 
   // planner simples por enquanto (você pode migrar para Redux quando quiser)
-  const [planner, setPlanner] = useState<any>({});
+  const [planner, setPlanner] = useState<any>(() => makeEmptyPlanner());
   const [shoppingList, setShoppingList] = useState<ShoppingList | null>(null);
   const [selected, setSelected] = useState<Recipe | null>(null);
 
@@ -25,15 +36,24 @@ export function Dashboard() {
     setRecipes(recipesData as Recipe[]);
   }, []);
 
-  // 👉 chamado pelo RecipeCard -> adiciona ingredientes desse recipe à shopping list
   const handleAddToBuy = (r: Recipe) => {
     setShoppingList(prev => {
       const next = prev ? ShoppingList.fromSnapshot(prev.getSnapshot()) : new ShoppingList();
       next.addIngredients(r.ingredients);
       return next;
     });
-    // opcional: já navegar para a lista
-    // setTab("list");
+  };
+
+  // ✅ Handler para colocar a receita em um dia/slot
+  const handlePlan = (day: Day, slot: Slot, recipe: Recipe) => {
+    setPlanner(prev => ({
+      ...prev,
+      [day]: {
+        ...(prev?.[day] || {}),
+        [slot]: { recipe },
+      },
+    }));
+    setTab("planner"); // opcional: ir direto para a tabela
   };
 
   const shoppingCount = shoppingList ? shoppingList.getTotalCount() : 0;
@@ -56,6 +76,7 @@ export function Dashboard() {
             setMealFilter={setMealFilter}
             onSelect={setSelected}
             onAdd={handleAddToBuy}
+            onPlan={handlePlan}
           />
         )}
 

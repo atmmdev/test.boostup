@@ -4,6 +4,7 @@ import type { Recipe } from "../../Domain/Entities/Recipe";
 import { RecipeCard } from "./RecipeCard";
 
 type MealKind = "all" | "breakfast" | "lunch" | "dinner";
+import { type Day, type Slot } from "../components/_plannerTypes";
 
 interface Props {
   recipes: Recipe[];
@@ -13,6 +14,7 @@ interface Props {
   setMealFilter: (f: MealKind) => void;
   onSelect: (r: Recipe) => void;
   onAdd: (r: Recipe) => void;
+  onPlan: (day: Day, slot: Slot, r: Recipe) => void;
 }
 
 function getRecipeName(r: any): string {
@@ -43,6 +45,7 @@ export function RecipeGallery({
   setMealFilter,
   onSelect,
   onAdd,
+  onPlan,
 }: Props) {
   const normalizedQuery = normalize(query.trim());
 
@@ -119,7 +122,7 @@ export function RecipeGallery({
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filtered.map((r) => (
-            <RecipeCard key={r.id} recipe={r} onSelect={onSelect} onAdd={onAdd} />
+            <RecipeCard key={r.id} recipe={r} onSelect={onSelect} onAdd={onAdd} onPlan={onPlan} />
           ))}
         </div>
       )}
