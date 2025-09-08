@@ -35,12 +35,6 @@ export function MealPlanner({ planner, setPlanner, setShoppingList, setTab }: Pr
     <div>
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-bold">Weekly Meal Planner</h2>
-        <button
-          onClick={handleGenerateList}
-          className="bg-green-600 text-white px-4 py-2 rounded text-sm"
-        >
-          Generate Shopping List
-        </button>
       </div>
 
       <div className="overflow-auto">

@@ -17,7 +17,7 @@ export function Sidebar({ tab, setTab, shoppingCount }: SidebarProps) {
           {[
             { key: "dashboard", label: "Dashboard" },
             { key: "planner", label: "Meal Planner" },
-            { key: "list", label: "Shopplist" },
+            { key: "list", label: "Shopping List" }, // ✅
           ].map((link) => (
             <button
               key={link.key}

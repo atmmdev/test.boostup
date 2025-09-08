@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import recipesData from "../../Data/recipe.json";
 import type { Recipe } from "../../Domain/Entities/Recipe";
-import { MealPlan } from "../../Domain/Entities/MealPlan";
 import { ShoppingList } from "../../Domain/Entities/ShoppingList";
 import { Sidebar } from "../components/Sidebar";
 import { RecipeGallery } from "../components/RecipeGallery";
@@ -15,10 +14,9 @@ export function Dashboard() {
   const [tab, setTab] = useState<"dashboard" | "planner" | "list">("dashboard");
 
   const [query, setQuery] = useState("");
-  const [mealFilter, setMealFilter] = useState<
-    "all" | "breakfast" | "lunch" | "dinner"
-  >("all");
+  const [mealFilter, setMealFilter] = useState<"all" | "breakfast" | "lunch" | "dinner">("all");
 
+  // planner simples por enquanto (você pode migrar para Redux quando quiser)
   const [planner, setPlanner] = useState<any>({});
   const [shoppingList, setShoppingList] = useState<ShoppingList | null>(null);
   const [selected, setSelected] = useState<Recipe | null>(null);
@@ -27,13 +25,27 @@ export function Dashboard() {
     setRecipes(recipesData as Recipe[]);
   }, []);
 
+  // 👉 chamado pelo RecipeCard -> adiciona ingredientes desse recipe à shopping list
+  const handleAddToBuy = (r: Recipe) => {
+    setShoppingList(prev => {
+      const next = prev ? ShoppingList.fromSnapshot(prev.getSnapshot()) : new ShoppingList();
+      next.addIngredients(r.ingredients);
+      return next;
+    });
+    // opcional: já navegar para a lista
+    // setTab("list");
+  };
+
+  const shoppingCount = shoppingList ? shoppingList.getTotalCount() : 0;
+
   return (
     <div className="flex flex-col lg:flex-row h-screen">
       <Sidebar
         tab={tab}
         setTab={setTab}
-        shoppingCount={shoppingList ? shoppingList.getTotalCount() : 0}
+        shoppingCount={shoppingCount}
       />
+
       <main className="flex-1 p-4 overflow-auto">
         {tab === "dashboard" && (
           <RecipeGallery
@@ -43,9 +55,10 @@ export function Dashboard() {
             setQuery={setQuery}
             setMealFilter={setMealFilter}
             onSelect={setSelected}
-            onAdd={(r) => console.log("Add recipe", r)}
+            onAdd={handleAddToBuy}
           />
         )}
+
         {tab === "planner" && (
           <MealPlanner
             planner={planner}
@@ -54,13 +67,23 @@ export function Dashboard() {
             setTab={setTab}
           />
         )}
+
         {tab === "list" && shoppingList && (
           <ShoppingListView
             shoppingList={shoppingList}
-            setShoppingList={setShoppingList}
+            // ✅ use o padrão onToggle (preferível). Assim não precisa passar setShoppingList.
+            onToggle={(cat, name) => {
+              setShoppingList(prev => {
+                if (!prev) return prev;
+                const next = ShoppingList.fromSnapshot(prev.getSnapshot());
+                next.toggleHave(cat, name);
+                return next;
+              });
+            }}
           />
         )}
       </main>
+
       {selected && <RecipeModal recipe={selected} onClose={() => setSelected(null)} />}
     </div>
   );
