@@ -1,5 +1,6 @@
+// src/Infrastructure/Repositories/LocalStorageRecipeRepository.ts
 import type { RecipeRepository } from "../../Domain/Repositories/RecipeRepository";
-import { Recipe } from "../../Domain/Entities/Recipe";
+import type { Recipe } from "../../Domain/Entities/Recipe";
 
 export class LocalStorageRecipeRepository implements RecipeRepository {
   private key = "recipes";
@@ -11,7 +12,11 @@ export class LocalStorageRecipeRepository implements RecipeRepository {
 
   async getById(id: string): Promise<Recipe> {
     const recipes = await this.getAll();
-    return recipes.find(r => r.id === id)!;
+    const found = recipes.find(r => r.id === id);
+    if (!found) {
+      throw new Error(`Recipe with id ${id} not found`);
+    }
+    return found;
   }
 
   async save(recipe: Recipe): Promise<void> {

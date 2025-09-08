@@ -1,24 +1,23 @@
-// src/Presentation/pages/Dashboard.tsx
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import recipesData from "../../Data/recipe.json";
 import type { Recipe } from "../../Domain/Entities/Recipe";
 import { ShoppingList } from "../../Domain/Entities/ShoppingList";
+
 import { Sidebar } from "../components/Sidebar";
 import { RecipeGallery } from "../components/RecipeGallery";
 import { MealPlanner } from "../components/MealPlanner";
 import { ShoppingListView } from "../components/ShoppingListView";
 import { RecipeModal } from "../components/RecipeModal";
 
-import { days, slots, type Day, type Slot } from "../components/_plannerTypes";
+import {
+  makeEmptyPlanner,
+  type Planner,
+  type Day,
+  type Slot,
+} from "../../Domain/Entities/Planner";
 
-function makeEmptyPlanner() {
-  const base: Record<Day, Record<Slot, { recipe?: Recipe }>> = {} as any;
-  for (const d of days) {
-    base[d] = {} as any;
-    for (const s of slots) base[d][s] = {};
-  }
-  return base;
-}
+import { LocalStoragePlannerRepository } from "../../Infrastructure/Repositories/LocalStoragePlannerRepository";
+import { LocalStorageRecipeRepository } from "../../Infrastructure/Repositories/LocalStorageRecipeRepository";
 
 export function Dashboard() {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -27,44 +26,88 @@ export function Dashboard() {
   const [query, setQuery] = useState("");
   const [mealFilter, setMealFilter] = useState<"all" | "breakfast" | "lunch" | "dinner">("all");
 
-  // planner simples por enquanto (você pode migrar para Redux quando quiser)
-  const [planner, setPlanner] = useState<any>(() => makeEmptyPlanner());
+  const [planner, setPlanner] = useState<Planner>(() => makeEmptyPlanner());
   const [shoppingList, setShoppingList] = useState<ShoppingList | null>(null);
   const [selected, setSelected] = useState<Recipe | null>(null);
 
-  useEffect(() => {
-    setRecipes(recipesData as Recipe[]);
-  }, []);
+  // Repositórios
+  const recipeRepo = useMemo(() => new LocalStorageRecipeRepository(), []);
+  const plannerRepoRef = useRef<LocalStoragePlannerRepository>();
 
+  // Seed de receitas + carga do planner
+  useEffect(() => {
+    let cancelled = false;
+
+    (async () => {
+      try {
+        // 1) Seed das receitas
+        const existing = await recipeRepo.getAll();
+        if (!existing.length) {
+          for (const r of recipesData as Recipe[]) {
+            await recipeRepo.save(r);
+          }
+        }
+        const allRecipes = await recipeRepo.getAll();
+        if (!cancelled) setRecipes(allRecipes);
+
+        // 2) Carregar planner (depois do seed)
+        const repo = new LocalStoragePlannerRepository(recipeRepo);
+        plannerRepoRef.current = repo;
+        const loaded = await repo.load();
+        if (!cancelled) setPlanner(loaded);
+      } catch (err) {
+        console.error("Erro ao carregar seed/planner", err);
+        if (!cancelled) {
+          setRecipes(recipesData as Recipe[]);
+          setPlanner(makeEmptyPlanner());
+        }
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [recipeRepo]);
+
+  // Auto-save do planner
+  useEffect(() => {
+    if (!plannerRepoRef.current) return;
+    void plannerRepoRef.current.save(planner);
+  }, [planner]);
+
+  // Adicionar ingredientes (card -> ShoppingList)
   const handleAddToBuy = (r: Recipe) => {
-    setShoppingList(prev => {
-      const next = prev ? ShoppingList.fromSnapshot(prev.getSnapshot()) : new ShoppingList();
+    setShoppingList((prev) => {
+      const next = prev
+        ? ShoppingList.fromSnapshot(prev.getSnapshot())
+        : new ShoppingList();
       next.addIngredients(r.ingredients);
       return next;
     });
   };
 
-  // ✅ Handler para colocar a receita em um dia/slot
+  // Planejar receita em dia/slot
   const handlePlan = (day: Day, slot: Slot, recipe: Recipe) => {
-    setPlanner(prev => ({
+    if (!recipe?.id) {
+      console.error("Recipe sem id, não pode salvar no planner", recipe);
+      return;
+    }
+
+    setPlanner((prev) => ({
       ...prev,
       [day]: {
-        ...(prev?.[day] || {}),
+        ...prev[day],
         [slot]: { recipe },
       },
     }));
-    setTab("planner"); // opcional: ir direto para a tabela
+    setTab("planner");
   };
 
   const shoppingCount = shoppingList ? shoppingList.getTotalCount() : 0;
 
   return (
     <div className="flex flex-col lg:flex-row h-screen">
-      <Sidebar
-        tab={tab}
-        setTab={setTab}
-        shoppingCount={shoppingCount}
-      />
+      <Sidebar tab={tab} setTab={setTab} shoppingCount={shoppingCount} />
 
       <main className="flex-1 p-4 overflow-auto">
         {tab === "dashboard" && (
@@ -92,9 +135,8 @@ export function Dashboard() {
         {tab === "list" && shoppingList && (
           <ShoppingListView
             shoppingList={shoppingList}
-            // ✅ use o padrão onToggle (preferível). Assim não precisa passar setShoppingList.
             onToggle={(cat, name) => {
-              setShoppingList(prev => {
+              setShoppingList((prev) => {
                 if (!prev) return prev;
                 const next = ShoppingList.fromSnapshot(prev.getSnapshot());
                 next.toggleHave(cat, name);
@@ -105,7 +147,9 @@ export function Dashboard() {
         )}
       </main>
 
-      {selected && <RecipeModal recipe={selected} onClose={() => setSelected(null)} />}
+      {selected && (
+        <RecipeModal recipe={selected} onClose={() => setSelected(null)} />
+      )}
     </div>
   );
 }

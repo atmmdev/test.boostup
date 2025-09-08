@@ -17,24 +17,45 @@ interface Props {
   onPlan: (day: Day, slot: Slot, r: Recipe) => void;
 }
 
-function getRecipeName(r: any): string {
-  if ("name" in r && typeof r.name === "string") return r.name;
-  if ("title" in r && typeof r.title === "string") return r.title;
-  return String(r?.id ?? "Recipe");
-}
-
-function getMealType(r: any): string | undefined {
-  if ("meal" in r && typeof r.meal === "string") return r.meal;
-  if ("mealType" in r && typeof r.mealType === "string") return r.mealType;
-  if ("category" in r && typeof r.category === "string") return r.category;
-  return undefined;
-}
-
 function normalize(s: string) {
-  return s
+  return (s ?? "")
+    .toString()
     .toLowerCase()
     .normalize("NFD")
     .replace(/\p{Diacritic}/gu, "");
+}
+
+function indexRecipe(r: Recipe): string {
+  const parts: string[] = [];
+
+  parts.push(r.title, r.cuisine, r.difficulty, String(r.cookingTime));
+
+  if (Array.isArray(r.dietaryTags)) parts.push(r.dietaryTags.join(" "));
+  if (Array.isArray(r.mealType)) parts.push(r.mealType.join(" "));
+
+  if (Array.isArray(r.ingredients)) {
+    for (const ing of r.ingredients) {
+      parts.push(
+        ing.name,
+        ing.quantity,
+        ing.category,
+        `${ing.quantity} ${ing.name}`
+      );
+    }
+  }
+
+  if (Array.isArray(r.instructions)) parts.push(r.instructions.join(" "));
+
+  if (r.nutrition) {
+    parts.push(
+      `calories ${r.nutrition.calories}`,
+      `protein ${r.nutrition.protein}`,
+      `carbs ${r.nutrition.carbs}`,
+      `fat ${r.nutrition.fat}`
+    );
+  }
+
+  return normalize(parts.filter(Boolean).join(" | "));
 }
 
 export function RecipeGallery({
@@ -53,34 +74,27 @@ export function RecipeGallery({
     if (!recipes?.length) return [];
 
     return recipes.filter((r) => {
-      const meal = (getMealType(r) || "").toLowerCase();
-      const mealOk =
-        mealFilter === "all" ? true : meal === mealFilter.toLowerCase();
-
-      if (!normalizedQuery) return mealOk;
-      const haystackParts: string[] = [];
-      haystackParts.push(getRecipeName(r));
-
-      if ("description" in r && typeof r.description === "string") {
-        haystackParts.push(r.description);
+      // filtro por tipo de refeição
+      let mealOk = true;
+      if (mealFilter !== "all") {
+        if (Array.isArray(r.mealType)) {
+          mealOk = r.mealType.map(normalize).includes(normalize(mealFilter));
+        } else if (typeof r.mealType === "string") {
+          mealOk = normalize(r.mealType) === normalize(mealFilter);
+        } else {
+          mealOk = false;
+        }
       }
 
-      if ("ingredients" in r) {
-        const ing = (r as any).ingredients;
-        if (Array.isArray(ing)) haystackParts.push(ing.join(", "));
-        else if (typeof ing === "string") haystackParts.push(ing);
-      }
+      if (!query.trim()) return mealOk;
 
-      if ("tags" in r && Array.isArray((r as any).tags)) {
-        haystackParts.push((r as any).tags.join(", "));
-      }
-
-      const haystack = normalize(haystackParts.join(" | "));
-      const queryOk = haystack.includes(normalizedQuery);
+      const hay = indexRecipe(r); // função que concatena todos os campos
+      const q = normalize(query);
+      const queryOk = hay.includes(q);
 
       return mealOk && queryOk;
     });
-  }, [recipes, mealFilter, normalizedQuery]);
+  }, [recipes, mealFilter, query]);
 
   return (
     <>
@@ -113,16 +127,27 @@ export function RecipeGallery({
         <div className="text-sm text-red-500">
           No recipes found
           {query ? (
-            <>to <span className="font-medium">“{query}”</span></>
+            <>
+              to <span className="font-medium">“{query}”</span>
+            </>
           ) : null}
           {mealFilter !== "all" ? (
-            <>in <span className="font-medium">{mealFilter}</span></>
-          ) : null}.
+            <>
+              in <span className="font-medium">{mealFilter}</span>
+            </>
+          ) : null}
+          .
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filtered.map((r) => (
-            <RecipeCard key={r.id} recipe={r} onSelect={onSelect} onAdd={onAdd} onPlan={onPlan} />
+            <RecipeCard
+              key={r.id}
+              recipe={r}
+              onSelect={onSelect}
+              onAdd={onAdd}
+              onPlan={onPlan}
+            />
           ))}
         </div>
       )}
