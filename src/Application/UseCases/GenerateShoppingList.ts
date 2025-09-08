@@ -1,17 +1,17 @@
-
-import type { RecipeRepository } from "../../Domain/Repositories/RecipeRepository";
 import { MealPlan } from "../../Domain/Entities/MealPlan";
 import { ShoppingList } from "../../Domain/Entities/ShoppingList";
+import type { RecipeRepository } from "../../Domain/Repositories/RecipeRepository";
 
 export class GenerateShoppingList {
-  constructor(private recipeRepo: RecipeRepository) { }
+  constructor(private recipeRepo: RecipeRepository) {}
 
-  async execute(mealPlan: MealPlan): Promise<ShoppingList> {
+  async execute(plan: MealPlan): Promise<ShoppingList> {
     const shoppingList = new ShoppingList();
-    for (const slot of mealPlan.slots) {
-      const recipe = await this.recipeRepo.getById(slot.recipeId);
-      shoppingList.addIngredients(recipe.ingredients);
+
+    for (const meal of plan.getMeals()) {
+      shoppingList.addIngredients(meal.ingredients);
     }
+
     return shoppingList;
   }
 }

@@ -16,9 +16,11 @@ export class Recipe {
     public id: string,
     public title: string,
     public image: string,
+    public cuisine: string,
     public cookingTime: number,
     public difficulty: "Easy" | "Medium" | "Hard",
     public dietaryTags: string[],
+    public mealType: string[],
     public ingredients: Ingredient[],
     public instructions: string[],
     public nutrition: NutritionalInfo

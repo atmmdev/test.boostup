@@ -1,15 +1,17 @@
-export type MealType = "breakfast" | "lunch" | "dinner";
-
-export interface MealSlot {
-  date: string;
-  type: MealType;
-  recipeId: string;
-}
+import { Recipe } from "./Recipe";
 
 export class MealPlan {
-  constructor(public slots: MealSlot[] = []) {}
+  meals: Recipe[] = [];
 
-  addMeal(slot: MealSlot) {
-    this.slots.push(slot);
+  constructor(meals: Recipe[] = []) {
+    this.meals = meals;
+  }
+
+  addRecipe(recipe: Recipe) {
+    this.meals.push(recipe);
+  }
+
+  getMeals() {
+    return this.meals;
   }
 }

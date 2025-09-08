@@ -1,0 +1,637 @@
+[
+  {
+    "id": "r1",
+    "title": "Avocado Toast with Poached Egg",
+    "image": "https://www.themealdb.com/images/media/meals/vvstvq1487342592.jpg",
+    "cuisine": "American",
+    "cookingTime": 15,
+    "difficulty": "Easy",
+    "dietaryTags": ["Vegetarian"],
+    "mealType": "Breakfast",
+    "ingredients": [
+      { "name": "Avocado", "quantity": "1", "category": "Produce" },
+      { "name": "Egg", "quantity": "2", "category": "Dairy" },
+      { "name": "Bread", "quantity": "2 slices", "category": "Bakery" }
+    ],
+    "nutrition": { "protein": 14, "carbs": 30, "fat": 18 },
+    "instructions": [
+      "Toast the bread.",
+      "Mash the avocado.",
+      "Poach the eggs.",
+      "Assemble toast and serve."
+    ]
+  },
+  {
+    "id": "r2",
+    "title": "Spaghetti Carbonara",
+    "image": "https://www.themealdb.com/images/media/meals/llcbn01574260722.jpg",
+    "cuisine": "Italian",
+    "cookingTime": 25,
+    "difficulty": "Medium",
+    "dietaryTags": ["Pork"],
+    "mealType": "Dinner",
+    "ingredients": [
+      { "name": "Spaghetti", "quantity": "200g", "category": "Pantry" },
+      { "name": "Egg", "quantity": "2", "category": "Dairy" },
+      { "name": "Parmesan", "quantity": "50g", "category": "Dairy" },
+      { "name": "Pancetta", "quantity": "100g", "category": "Meat" }
+    ],
+    "nutrition": { "protein": 25, "carbs": 55, "fat": 20 },
+    "instructions": [
+      "Boil spaghetti.",
+      "Cook pancetta.",
+      "Mix eggs and parmesan.",
+      "Combine all ingredients."
+    ]
+  },
+  {
+    "id": "r3",
+    "title": "Chicken Curry",
+    "image": "https://www.themealdb.com/images/media/meals/1520084413.jpg",
+    "cuisine": "Indian",
+    "cookingTime": 40,
+    "difficulty": "Medium",
+    "dietaryTags": ["Gluten Free"],
+    "mealType": "Lunch",
+    "ingredients": [
+      { "name": "Chicken Breast", "quantity": "400g", "category": "Meat" },
+      { "name": "Onion", "quantity": "1", "category": "Produce" },
+      { "name": "Tomato", "quantity": "2", "category": "Produce" },
+      { "name": "Curry Powder", "quantity": "2 tbsp", "category": "Spices" }
+    ],
+    "nutrition": { "protein": 35, "carbs": 20, "fat": 15 },
+    "instructions": [
+      "Cook onion and tomato.",
+      "Add curry powder.",
+      "Add chicken and simmer.",
+      "Serve with rice."
+    ]
+  },
+  {
+    "id": "r4",
+    "title": "Beef Tacos",
+    "image": "https://www.themealdb.com/images/media/meals/wvpsxx1468256321.jpg",
+    "cuisine": "Mexican",
+    "cookingTime": 20,
+    "difficulty": "Easy",
+    "dietaryTags": ["Gluten Free"],
+    "mealType": "Dinner",
+    "ingredients": [
+      { "name": "Ground Beef", "quantity": "300g", "category": "Meat" },
+      { "name": "Taco Shells", "quantity": "6", "category": "Bakery" },
+      { "name": "Cheddar", "quantity": "50g", "category": "Dairy" },
+      { "name": "Lettuce", "quantity": "1 cup", "category": "Produce" }
+    ],
+    "nutrition": { "protein": 30, "carbs": 35, "fat": 22 },
+    "instructions": [
+      "Cook beef with seasoning.",
+      "Fill taco shells with beef.",
+      "Top with cheese and lettuce."
+    ]
+  },
+  {
+    "id": "r5",
+    "title": "Vegetable Stir Fry",
+    "image": "https://www.themealdb.com/images/media/meals/wqurxy1511453156.jpg",
+    "cuisine": "Chinese",
+    "cookingTime": 20,
+    "difficulty": "Easy",
+    "dietaryTags": ["Vegan", "Gluten Free"],
+    "mealType": "Lunch",
+    "ingredients": [
+      { "name": "Broccoli", "quantity": "1 cup", "category": "Produce" },
+      { "name": "Carrot", "quantity": "1", "category": "Produce" },
+      { "name": "Soy Sauce", "quantity": "2 tbsp", "category": "Condiments" }
+    ],
+    "nutrition": { "protein": 10, "carbs": 30, "fat": 5 },
+    "instructions": [
+      "Chop vegetables.",
+      "Stir fry in hot pan.",
+      "Add soy sauce and serve."
+    ]
+  },
+  {
+    "id": "r6",
+    "title": "Sushi Rolls",
+    "image": "https://www.themealdb.com/images/media/meals/g046bb1663960946.jpg",
+    "cuisine": "Japanese",
+    "cookingTime": 60,
+    "difficulty": "Hard",
+    "dietaryTags": ["Gluten Free"],
+    "mealType": "Dinner",
+    "ingredients": [
+      { "name": "Sushi Rice", "quantity": "200g", "category": "Pantry" },
+      { "name": "Nori Sheets", "quantity": "4", "category": "Pantry" },
+      { "name": "Salmon", "quantity": "100g", "category": "Seafood" },
+      { "name": "Cucumber", "quantity": "1", "category": "Produce" }
+    ],
+    "nutrition": { "protein": 28, "carbs": 45, "fat": 12 },
+    "instructions": [
+      "Cook sushi rice.",
+      "Place nori on mat, spread rice.",
+      "Add filling and roll tightly.",
+      "Cut into slices."
+    ]
+  },
+  {
+    "id": "r7",
+    "title": "Feijoada",
+    "image": "https://www.themealdb.com/images/media/meals/lpd4wy1614347943.jpg",
+    "cuisine": "Brazilian",
+    "cookingTime": 90,
+    "difficulty": "Hard",
+    "dietaryTags": ["Pork", "Gluten Free"],
+    "mealType": "Lunch",
+    "ingredients": [
+      { "name": "Black Beans", "quantity": "500g", "category": "Pantry" },
+      { "name": "Pork", "quantity": "400g", "category": "Meat" },
+      { "name": "Sausage", "quantity": "200g", "category": "Meat" },
+      { "name": "Onion", "quantity": "1", "category": "Produce" }
+    ],
+    "nutrition": { "protein": 40, "carbs": 60, "fat": 30 },
+    "instructions": [
+      "Soak beans overnight.",
+      "Cook beans with pork and sausage.",
+      "Simmer until thick.",
+      "Serve with rice and farofa."
+    ]
+  },
+  {
+    "id": "r8",
+    "title": "Greek Salad",
+    "image": "https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg",
+    "cuisine": "Greek",
+    "cookingTime": 15,
+    "difficulty": "Easy",
+    "dietaryTags": ["Vegetarian", "Gluten Free"],
+    "mealType": "Lunch",
+    "ingredients": [
+      { "name": "Tomato", "quantity": "2", "category": "Produce" },
+      { "name": "Cucumber", "quantity": "1", "category": "Produce" },
+      { "name": "Feta Cheese", "quantity": "100g", "category": "Dairy" },
+      { "name": "Olives", "quantity": "50g", "category": "Condiments" }
+    ],
+    "nutrition": { "protein": 12, "carbs": 18, "fat": 10 },
+    "instructions": [
+      "Chop vegetables.",
+      "Mix with feta and olives.",
+      "Season with olive oil and oregano."
+    ]
+  },
+  {
+    "id": "r9",
+    "title": "Pad Thai",
+    "image": "https://www.themealdb.com/images/media/meals/uuuspp1468263334.jpg",
+    "cuisine": "Thai",
+    "cookingTime": 35,
+    "difficulty": "Medium",
+    "dietaryTags": ["Gluten Free"],
+    "mealType": "Dinner",
+    "ingredients": [
+      { "name": "Rice Noodles", "quantity": "200g", "category": "Pantry" },
+      { "name": "Shrimp", "quantity": "150g", "category": "Seafood" },
+      { "name": "Bean Sprouts", "quantity": "1 cup", "category": "Produce" },
+      { "name": "Peanuts", "quantity": "50g", "category": "Nuts" }
+    ],
+    "nutrition": { "protein": 22, "carbs": 60, "fat": 18 },
+    "instructions": [
+      "Soak rice noodles.",
+      "Stir fry shrimp and vegetables.",
+      "Add sauce and noodles.",
+      "Top with peanuts."
+    ]
+  },
+  {
+    "id": "r10",
+    "title": "Falafel Wrap",
+    "image": "https://www.themealdb.com/images/media/meals/58oia61564916529.jpg",
+    "cuisine": "Middle Eastern",
+    "cookingTime": 25,
+    "difficulty": "Easy",
+    "dietaryTags": ["Vegan"],
+    "mealType": "Lunch",
+    "ingredients": [
+      { "name": "Chickpeas", "quantity": "200g", "category": "Pantry" },
+      { "name": "Garlic", "quantity": "2 cloves", "category": "Produce" },
+      { "name": "Tortilla", "quantity": "2", "category": "Bakery" },
+      { "name": "Lettuce", "quantity": "1 cup", "category": "Produce" }
+    ],
+    "nutrition": { "protein": 15, "carbs": 40, "fat": 10 },
+    "instructions": [
+      "Blend chickpeas and spices.",
+      "Form into balls and fry.",
+      "Assemble wrap with veggies."
+    ]
+  },
+  {
+    "id": "r11",
+    "title": "French Onion Soup",
+    "image": "https://www.themealdb.com/images/media/meals/xvrrux1511783685.jpg",
+    "cuisine": "French",
+    "cookingTime": 50,
+    "difficulty": "Medium",
+    "dietaryTags": ["Vegetarian"],
+    "mealType": "Dinner",
+    "ingredients": [
+      { "name": "Onion", "quantity": "4", "category": "Produce" },
+      { "name": "Butter", "quantity": "50g", "category": "Dairy" },
+      { "name": "Beef Stock", "quantity": "500ml", "category": "Pantry" },
+      { "name": "Bread", "quantity": "4 slices", "category": "Bakery" }
+    ],
+    "nutrition": { "protein": 8, "carbs": 35, "fat": 15 },
+    "instructions": [
+      "Caramelize onions.",
+      "Add stock and simmer.",
+      "Serve with toasted bread."
+    ]
+  },
+  {
+    "id": "r12",
+    "title": "Quiche Lorraine",
+    "image": "https://www.themealdb.com/images/media/meals/ytpstt1511814614.jpg",
+    "cuisine": "French",
+    "cookingTime": 60,
+    "difficulty": "Medium",
+    "dietaryTags": ["Pork"],
+    "mealType": "Lunch",
+    "ingredients": [
+      { "name": "Pie Crust", "quantity": "1", "category": "Bakery" },
+      { "name": "Bacon", "quantity": "150g", "category": "Meat" },
+      { "name": "Egg", "quantity": "3", "category": "Dairy" },
+      { "name": "Cream", "quantity": "200ml", "category": "Dairy" }
+    ],
+    "nutrition": { "protein": 18, "carbs": 30, "fat": 28 },
+    "instructions": [
+      "Prepare pie crust.",
+      "Cook bacon.",
+      "Mix eggs and cream.",
+      "Bake until golden."
+    ]
+  },
+  {
+    "id": "r13",
+    "title": "Ratatouille",
+    "image": "https://www.themealdb.com/images/media/meals/wrpwuu1511786491.jpg",
+    "cuisine": "French",
+    "cookingTime": 60,
+    "difficulty": "Medium",
+    "dietaryTags": ["Vegan", "Gluten Free"],
+    "mealType": "Dinner",
+    "ingredients": [
+      { "name": "Eggplant", "quantity": "1", "category": "Produce" },
+      { "name": "Zucchini", "quantity": "1", "category": "Produce" },
+      { "name": "Bell Pepper", "quantity": "1", "category": "Produce" },
+      { "name": "Tomato", "quantity": "2", "category": "Produce" }
+    ],
+    "nutrition": { "protein": 6, "carbs": 20, "fat": 8 },
+    "instructions": [
+      "Slice vegetables.",
+      "Layer in dish.",
+      "Bake until tender."
+    ]
+  },
+  {
+    "id": "r14",
+    "title": "Paella",
+    "image": "https://www.themealdb.com/images/media/meals/rptuxy1511799304.jpg",
+    "cuisine": "Spanish",
+    "cookingTime": 70,
+    "difficulty": "Hard",
+    "dietaryTags": ["Seafood"],
+    "mealType": "Dinner",
+    "ingredients": [
+      { "name": "Rice", "quantity": "300g", "category": "Pantry" },
+      { "name": "Shrimp", "quantity": "200g", "category": "Seafood" },
+      { "name": "Chicken", "quantity": "200g", "category": "Meat" },
+      { "name": "Peas", "quantity": "1 cup", "category": "Produce" }
+    ],
+    "nutrition": { "protein": 30, "carbs": 70, "fat": 20 },
+    "instructions": [
+      "Cook meat and seafood.",
+      "Add rice and broth.",
+      "Simmer until rice is cooked."
+    ]
+  },
+  {
+    "id": "r15",
+    "title": "Caesar Salad",
+    "image": "https://www.themealdb.com/images/media/meals/llcbn01574260722.jpg",
+    "cuisine": "American",
+    "cookingTime": 20,
+    "difficulty": "Easy",
+    "dietaryTags": ["Gluten Free"],
+    "mealType": "Lunch",
+    "ingredients": [
+      { "name": "Lettuce", "quantity": "1 head", "category": "Produce" },
+      { "name": "Parmesan", "quantity": "50g", "category": "Dairy" },
+      { "name": "Croutons", "quantity": "50g", "category": "Bakery" },
+      {
+        "name": "Caesar Dressing",
+        "quantity": "50ml",
+        "category": "Condiments"
+      }
+    ],
+    "nutrition": { "protein": 10, "carbs": 15, "fat": 12 },
+    "instructions": [
+      "Chop lettuce.",
+      "Mix with dressing.",
+      "Top with parmesan and croutons."
+    ]
+  },
+  {
+    "id": "r16",
+    "title": "Bibimbap",
+    "image": "https://www.themealdb.com/images/media/meals/xxrxux1503070723.jpg",
+    "cuisine": "Korean",
+    "cookingTime": 50,
+    "difficulty": "Medium",
+    "dietaryTags": ["Gluten Free"],
+    "mealType": "Dinner",
+    "ingredients": [
+      { "name": "Rice", "quantity": "200g", "category": "Pantry" },
+      { "name": "Beef", "quantity": "150g", "category": "Meat" },
+      { "name": "Spinach", "quantity": "1 cup", "category": "Produce" },
+      { "name": "Egg", "quantity": "1", "category": "Dairy" }
+    ],
+    "nutrition": { "protein": 28, "carbs": 60, "fat": 15 },
+    "instructions": [
+      "Cook rice.",
+      "Stir fry vegetables and beef.",
+      "Top rice with toppings and fried egg."
+    ]
+  },
+  {
+    "id": "r17",
+    "title": "Fish and Chips",
+    "image": "https://www.themealdb.com/images/media/meals/wyxwsp1486979827.jpg",
+    "cuisine": "British",
+    "cookingTime": 45,
+    "difficulty": "Medium",
+    "dietaryTags": ["Seafood"],
+    "mealType": "Dinner",
+    "ingredients": [
+      { "name": "Cod", "quantity": "200g", "category": "Seafood" },
+      { "name": "Potatoes", "quantity": "3", "category": "Produce" },
+      { "name": "Flour", "quantity": "100g", "category": "Pantry" },
+      { "name": "Oil", "quantity": "500ml", "category": "Pantry" }
+    ],
+    "nutrition": { "protein": 25, "carbs": 55, "fat": 30 },
+    "instructions": [
+      "Cut potatoes into fries.",
+      "Coat fish in batter.",
+      "Deep fry fish and chips."
+    ]
+  },
+  {
+    "id": "r18",
+    "title": "Shakshuka",
+    "image": "https://www.themealdb.com/images/media/meals/g3w46q1588421993.jpg",
+    "cuisine": "Middle Eastern",
+    "cookingTime": 30,
+    "difficulty": "Easy",
+    "dietaryTags": ["Vegetarian", "Gluten Free"],
+    "mealType": "Breakfast",
+    "ingredients": [
+      { "name": "Tomato", "quantity": "3", "category": "Produce" },
+      { "name": "Egg", "quantity": "3", "category": "Dairy" },
+      { "name": "Onion", "quantity": "1", "category": "Produce" },
+      { "name": "Bell Pepper", "quantity": "1", "category": "Produce" }
+    ],
+    "nutrition": { "protein": 18, "carbs": 20, "fat": 12 },
+    "instructions": [
+      "Cook onion and pepper.",
+      "Add tomatoes and simmer.",
+      "Crack eggs on top and cook."
+    ]
+  },
+  {
+    "id": "r19",
+    "title": "Miso Soup",
+    "image": "https://www.themealdb.com/images/media/meals/4ptof61579314687.jpg",
+    "cuisine": "Japanese",
+    "cookingTime": 15,
+    "difficulty": "Easy",
+    "dietaryTags": ["Vegan", "Gluten Free"],
+    "mealType": "Lunch",
+    "ingredients": [
+      { "name": "Miso Paste", "quantity": "2 tbsp", "category": "Pantry" },
+      { "name": "Tofu", "quantity": "100g", "category": "Dairy" },
+      { "name": "Seaweed", "quantity": "20g", "category": "Seafood" }
+    ],
+    "nutrition": { "protein": 10, "carbs": 12, "fat": 4 },
+    "instructions": ["Boil water.", "Add miso paste.", "Add tofu and seaweed."]
+  },
+  {
+    "id": "r20",
+    "title": "Beef Stroganoff",
+    "image": "https://www.themealdb.com/images/media/meals/svprys1511176755.jpg",
+    "cuisine": "Russian",
+    "cookingTime": 55,
+    "difficulty": "Medium",
+    "dietaryTags": ["Gluten Free"],
+    "mealType": "Dinner",
+    "ingredients": [
+      { "name": "Beef", "quantity": "300g", "category": "Meat" },
+      { "name": "Mushrooms", "quantity": "100g", "category": "Produce" },
+      { "name": "Onion", "quantity": "1", "category": "Produce" },
+      { "name": "Sour Cream", "quantity": "100ml", "category": "Dairy" }
+    ],
+    "nutrition": { "protein": 35, "carbs": 25, "fat": 22 },
+    "instructions": [
+      "Cook onions and mushrooms.",
+      "Add beef and brown.",
+      "Add sour cream and simmer."
+    ]
+  },
+  {
+    "id": "r21",
+    "title": "Pancakes",
+    "image": "https://www.themealdb.com/images/media/meals/rwuyqx1511383174.jpg",
+    "cuisine": "American",
+    "cookingTime": 20,
+    "difficulty": "Easy",
+    "dietaryTags": ["Vegetarian"],
+    "mealType": "Breakfast",
+    "ingredients": [
+      { "name": "Flour", "quantity": "200g", "category": "Pantry" },
+      { "name": "Milk", "quantity": "250ml", "category": "Dairy" },
+      { "name": "Egg", "quantity": "1", "category": "Dairy" }
+    ],
+    "nutrition": { "protein": 8, "carbs": 40, "fat": 6 },
+    "instructions": ["Mix ingredients.", "Cook on skillet until golden."]
+  },
+  {
+    "id": "r22",
+    "title": "Goulash",
+    "image": "https://www.themealdb.com/images/media/meals/1529444113.jpg",
+    "cuisine": "Hungarian",
+    "cookingTime": 80,
+    "difficulty": "Hard",
+    "dietaryTags": ["Gluten Free"],
+    "mealType": "Dinner",
+    "ingredients": [
+      { "name": "Beef", "quantity": "400g", "category": "Meat" },
+      { "name": "Onion", "quantity": "2", "category": "Produce" },
+      { "name": "Paprika", "quantity": "2 tbsp", "category": "Spices" }
+    ],
+    "nutrition": { "protein": 38, "carbs": 30, "fat": 20 },
+    "instructions": ["Cook onion with paprika.", "Add beef and simmer long."]
+  },
+  {
+    "id": "r23",
+    "title": "Tiramisu",
+    "image": "https://www.themealdb.com/images/media/meals/ytpstt1511814614.jpg",
+    "cuisine": "Italian",
+    "cookingTime": 35,
+    "difficulty": "Medium",
+    "dietaryTags": ["Vegetarian"],
+    "mealType": "Dinner",
+    "ingredients": [
+      { "name": "Mascarpone", "quantity": "250g", "category": "Dairy" },
+      { "name": "Egg", "quantity": "3", "category": "Dairy" },
+      { "name": "Coffee", "quantity": "200ml", "category": "Beverage" },
+      { "name": "Ladyfingers", "quantity": "100g", "category": "Bakery" }
+    ],
+    "nutrition": { "protein": 8, "carbs": 40, "fat": 22 },
+    "instructions": [
+      "Whip mascarpone and eggs.",
+      "Soak ladyfingers in coffee.",
+      "Layer and chill."
+    ]
+  },
+  {
+    "id": "r24",
+    "title": "Pho",
+    "image": "https://www.themealdb.com/images/media/meals/xxrxux1503070723.jpg",
+    "cuisine": "Vietnamese",
+    "cookingTime": 70,
+    "difficulty": "Hard",
+    "dietaryTags": ["Gluten Free"],
+    "mealType": "Lunch",
+    "ingredients": [
+      { "name": "Rice Noodles", "quantity": "200g", "category": "Pantry" },
+      { "name": "Beef", "quantity": "200g", "category": "Meat" },
+      { "name": "Broth", "quantity": "1L", "category": "Pantry" }
+    ],
+    "nutrition": { "protein": 32, "carbs": 65, "fat": 12 },
+    "instructions": [
+      "Prepare broth with spices.",
+      "Cook noodles.",
+      "Assemble with beef."
+    ]
+  },
+  {
+    "id": "r25",
+    "title": "Ceviche",
+    "image": "https://www.themealdb.com/images/media/meals/1529444113.jpg",
+    "cuisine": "Peruvian",
+    "cookingTime": 25,
+    "difficulty": "Easy",
+    "dietaryTags": ["Seafood", "Gluten Free"],
+    "mealType": "Lunch",
+    "ingredients": [
+      { "name": "Fish", "quantity": "200g", "category": "Seafood" },
+      { "name": "Lime", "quantity": "2", "category": "Produce" },
+      { "name": "Onion", "quantity": "1", "category": "Produce" }
+    ],
+    "nutrition": { "protein": 22, "carbs": 10, "fat": 5 },
+    "instructions": ["Marinate fish in lime.", "Add onions and season."]
+  },
+  {
+    "id": "r26",
+    "title": "Chili con Carne",
+    "image": "https://www.themealdb.com/images/media/meals/uuuspp1468263334.jpg",
+    "cuisine": "Mexican",
+    "cookingTime": 60,
+    "difficulty": "Medium",
+    "dietaryTags": ["Gluten Free"],
+    "mealType": "Dinner",
+    "ingredients": [
+      { "name": "Ground Beef", "quantity": "300g", "category": "Meat" },
+      { "name": "Beans", "quantity": "200g", "category": "Pantry" },
+      { "name": "Tomato", "quantity": "2", "category": "Produce" }
+    ],
+    "nutrition": { "protein": 35, "carbs": 45, "fat": 20 },
+    "instructions": [
+      "Cook beef.",
+      "Add beans and tomatoes.",
+      "Simmer with spices."
+    ]
+  },
+  {
+    "id": "r27",
+    "title": "Poke Bowl",
+    "image": "https://www.themealdb.com/images/media/meals/58oia61564916529.jpg",
+    "cuisine": "Hawaiian",
+    "cookingTime": 30,
+    "difficulty": "Easy",
+    "dietaryTags": ["Seafood", "Gluten Free"],
+    "mealType": "Lunch",
+    "ingredients": [
+      { "name": "Rice", "quantity": "200g", "category": "Pantry" },
+      { "name": "Salmon", "quantity": "150g", "category": "Seafood" },
+      { "name": "Avocado", "quantity": "1", "category": "Produce" }
+    ],
+    "nutrition": { "protein": 28, "carbs": 50, "fat": 15 },
+    "instructions": ["Cook rice.", "Top with salmon and avocado."]
+  },
+  {
+    "id": "r28",
+    "title": "Pizza Margherita",
+    "image": "https://www.themealdb.com/images/media/meals/x0lk931587671540.jpg",
+    "cuisine": "Italian",
+    "cookingTime": 30,
+    "difficulty": "Medium",
+    "dietaryTags": ["Vegetarian"],
+    "mealType": "Dinner",
+    "ingredients": [
+      { "name": "Pizza Dough", "quantity": "1 base", "category": "Bakery" },
+      { "name": "Tomato Sauce", "quantity": "100ml", "category": "Condiments" },
+      { "name": "Mozzarella", "quantity": "100g", "category": "Dairy" }
+    ],
+    "nutrition": { "protein": 15, "carbs": 60, "fat": 18 },
+    "instructions": [
+      "Spread sauce on dough.",
+      "Add mozzarella.",
+      "Bake until golden."
+    ]
+  },
+  {
+    "id": "r29",
+    "title": "Baklava",
+    "image": "https://www.themealdb.com/images/media/meals/wvpsxx1468256321.jpg",
+    "cuisine": "Turkish",
+    "cookingTime": 70,
+    "difficulty": "Hard",
+    "dietaryTags": ["Vegetarian"],
+    "mealType": "Dinner",
+    "ingredients": [
+      { "name": "Phyllo Dough", "quantity": "300g", "category": "Bakery" },
+      { "name": "Walnuts", "quantity": "200g", "category": "Nuts" },
+      { "name": "Honey", "quantity": "100ml", "category": "Condiments" }
+    ],
+    "nutrition": { "protein": 10, "carbs": 50, "fat": 25 },
+    "instructions": ["Layer phyllo with nuts.", "Bake and drizzle with honey."]
+  },
+  {
+    "id": "r30",
+    "title": "Brigadeiro",
+    "image": "https://www.themealdb.com/images/media/meals/vrspxv1511722107.jpg",
+    "cuisine": "Brazilian",
+    "cookingTime": 20,
+    "difficulty": "Easy",
+    "dietaryTags": ["Vegetarian", "Gluten Free"],
+    "mealType": "Dessert",
+    "ingredients": [
+      { "name": "Condensed Milk", "quantity": "1 can", "category": "Dairy" },
+      { "name": "Cocoa Powder", "quantity": "3 tbsp", "category": "Pantry" },
+      { "name": "Butter", "quantity": "1 tbsp", "category": "Dairy" }
+    ],
+    "nutrition": { "protein": 6, "carbs": 45, "fat": 12 },
+    "instructions": [
+      "Cook condensed milk with cocoa and butter.",
+      "Roll into balls.",
+      "Coat with sprinkles."
+    ]
+  }
+]
