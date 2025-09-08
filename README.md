@@ -40,6 +40,76 @@ cooks organize their favorite recipes, plan weekly meals, and generate smart sho
 - Deploy using Vercel (free tier).
 ```
 
+## Architecture
+
+```
+└── 📁text.boostup
+    └── 📁documentation
+        ├── boost-up-fe-assignment.pdf
+    └── 📁public
+        ├── vite.svg
+    └── 📁src
+        └── 📁Application
+            └── 📁UseCases
+                ├── AddRecipe.ts
+                ├── GenerateShoppingList.ts
+                ├── PlanMeal.ts
+        └── 📁Data
+            ├── recipe.json
+        └── 📁Domain
+            └── 📁Entities
+                ├── MealPlan.ts
+                ├── Recipe.ts
+                ├── ShoppingList.ts
+            └── 📁Repositories
+                ├── RecipeRepository.ts
+            └── 📁Services
+            └── 📁ValueObjects
+        └── 📁Infrastructure
+            └── 📁Api
+                ├── RecipeParserAPI.ts
+            └── 📁Repositories
+                ├── LocalStorageMealRepository.ts
+                ├── LocalStorageRecipeRepository.ts
+        └── 📁Presentation
+            └── 📁components
+                ├── MealPlanner.tsx
+                ├── RecipeCard.tsx
+                ├── RecipeGallery.tsx
+                ├── RecipeMeal.tsx
+                ├── ShoppingList.tsx
+            └── 📁hooks
+            └── 📁pages
+                ├── Dashboard.tsx
+            └── 📁routes
+        ├── App.tsx
+        ├── main.css
+        ├── main.tsx
+        ├── vite-env.d.ts
+    ├── .env
+    ├── .gitignore
+    ├── eslint.config.js
+    ├── favicon.png
+    ├── index.html
+    ├── package-lock.json
+    ├── package.json
+    ├── README.md
+    ├── tsconfig.app.json
+    ├── tsconfig.json
+    ├── tsconfig.node.json
+    └── vite.config.ts
+```
+
+## Como rodar
+
+npm i
+npm run dev
+
+## Decisões
+
+- JSON seed em vez de API (CORS/tempo)
+- Persistência leve em localStorage
+
 ## I use AI to help me
 
 - ChatGPT foi usado para estruturar a base de DDD e gerar exemplos iniciais.
@@ -48,23 +118,3 @@ cooks organize their favorite recipes, plan weekly meals, and generate smart sho
   - Separação clara em camadas
   - Integração com LocalStorage
 - Prompt engineering foi usado para acelerar a escrita de entidades e casos de uso.
-
-## API
-
-Please make a copy of your OAuth 2.0 Client Secret as this is your only opportunity to view it. It cannot be retrieved later.
-
-- Client ID: e312139528ee43c3aff4e8bfc325e218
-- Client Secret: 8da15a8917f1400fbfd51d535e5f7968
-
-Endpoint - recipe_types
-
-- `https://platform.fatsecret.com/rest/server.api?method=recipe_types.get.v2&format=json`
-- `https://platform.fatsecret.com/rest/server.api?method=recipes.search.v2&recipe_type=Appetizer&format=json (per Category)`
-
-- Recipe Gallery com busca + filtros
-- Weekly Meal Planner com grid 7 × 3 e indicadores nutricionais
-- Shopping List Generator com agrupamento, custo e edição manual
-- Recipe Modal com ingredientes, instruções, nutrição, timer, rating/notas
-- Tudo responsivo (grid-cols-1 sm:grid-cols-2 lg:grid-cols-3)
-- Persistência via LocalStorage (Recipes, Planner, ShoppingList, Ratings/Notes)
-- README documentando arquitetura e AI usada
