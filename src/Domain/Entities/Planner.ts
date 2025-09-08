@@ -1,4 +1,3 @@
-// src/Domain/Entities/Planner.ts
 import type { Recipe } from "./Recipe";
 
 export const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] as const;

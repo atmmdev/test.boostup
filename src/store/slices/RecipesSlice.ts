@@ -1,4 +1,3 @@
-// src/store/slices/recipesSlice.ts
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import data from "../../Data/recipe.json";

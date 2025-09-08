@@ -23,98 +23,122 @@
 You're building a personal recipe management and meal planning application that helps home
 cooks organize their favorite recipes, plan weekly meals, and generate smart shopping lists.
 
+## Layout
+
+<p align="center">
+  <img src="./documentation/dashboard.png" />
+</p>
+
+<p align="center">
+  <img src="./documentation/mealplanner.png" />
+</p>
+
+<p align="center">
+  <img src="./documentation/shopplist-ingredients.png" />
+</p>
+
 ## Tecnologies
 
 ```bash
 # Technical Requirements
-- React with TypeScript.
-- State management (Context API, Redux, or anything else that works for you).
-- Responsive design that works on desktop, tablet, and mobile.
-- CSS-in-JS or styled-components (or Tailwind CSS).
-- Mock data - create realistic recipe data (at least 30+ recipes with various cuisines and dietary options).
-- Local storage persistence for meal plans and shopping lists.
-
-# Bonus Features (Nice to Have)
-- Recipe import from URL functionality.
-- Unit tests for key components.
-- Deploy using Vercel (free tier).
+- Technologies
+- React + TypeScript
+- TailwindCSS for responsiveness
+- LocalStorage for persistence
+- DDD + Clean Architecture (Domain, Application, Infrastructure, Presentation)
+- Mock Data in recipe.json with 30+ recipes
 ```
 
 ## Architecture
 
 ```
-└── 📁text.boostup
-    └── 📁documentation
-        ├── boost-up-fe-assignment.pdf
-    └── 📁public
-        ├── vite.svg
-    └── 📁src
-        └── 📁Application
-            └── 📁UseCases
-                ├── AddRecipe.ts
-                ├── GenerateShoppingList.ts
-                ├── PlanMeal.ts
-        └── 📁Data
-            ├── recipe.json
-        └── 📁Domain
-            └── 📁Entities
-                ├── MealPlan.ts
-                ├── Recipe.ts
-                ├── ShoppingList.ts
-            └── 📁Repositories
-                ├── RecipeRepository.ts
-            └── 📁Services
-            └── 📁ValueObjects
-        └── 📁Infrastructure
-            └── 📁Api
-                ├── RecipeParserAPI.ts
-            └── 📁Repositories
-                ├── LocalStorageMealRepository.ts
-                ├── LocalStorageRecipeRepository.ts
-        └── 📁Presentation
-            └── 📁components
-                ├── MealPlanner.tsx
-                ├── RecipeCard.tsx
-                ├── RecipeGallery.tsx
-                ├── RecipeMeal.tsx
-                ├── ShoppingList.tsx
-            └── 📁hooks
-            └── 📁pages
-                ├── Dashboard.tsx
-            └── 📁routes
-        ├── App.tsx
-        ├── main.css
-        ├── main.tsx
-        ├── vite-env.d.ts
-    ├── .env
-    ├── .gitignore
-    ├── eslint.config.js
-    ├── favicon.png
-    ├── index.html
-    ├── package-lock.json
-    ├── package.json
-    ├── README.md
-    ├── tsconfig.app.json
-    ├── tsconfig.json
-    ├── tsconfig.node.json
-    └── vite.config.ts
+📁 src
+ ├── 📁 Application
+ │    └── 📁 UseCases
+ │         ├── AddRecipe.ts
+ │         ├── GenerateShoppingList.ts
+ │         ├── PlanMeal.ts
+ ├── 📁 Data
+ │    └── recipe.json
+ ├── 📁 Domain
+ │    ├── 📁 Entities
+ │    │     ├── MealPlan.ts
+ │    │     ├── Recipe.ts
+ │    │     ├── ShoppingList.ts
+ │    └── 📁 Repositories
+ │          ├── RecipeRepository.ts
+ ├── 📁 Infrastructure
+ │    └── 📁 Repositories
+ │          ├── LocalStoragePlannerRepository.ts
+ │          ├── LocalStorageRecipeRepository.ts
+ │          ├── LocalStorageIngredientRepository.ts
+ ├── 📁 Presentation
+ │    ├── 📁 components
+ │    │     ├── MealPlanner.tsx
+ │    │     ├── RecipeCard.tsx
+ │    │     ├── RecipeGallery.tsx
+ │    │     ├── RecipeModal.tsx
+ │    │     ├── ShoppingListView.tsx
+ │    └── 📁 pages
+ │          ├── Dashboard.tsx
+ ├── App.tsx
+ ├── main.tsx
+ └── main.css
 ```
 
-## Como rodar
+## Run this project
 
+```bash
 npm i
 npm run dev
+```
 
-## Decisões
+## Technical Decisions
 
-- JSON seed em vez de API (CORS/tempo)
-- Persistência leve em localStorage
+- DDD + Clean Architecture: separation of responsibilities between Domain, Application, Infrastructure, and Presentation.
+- LocalStorage: chosen for simplicity, it meets the test scope well.
+- JSON: used instead of an external API (to avoid CORS and speed up setup).
+- Incremental Persistence: planner and shopping list are automatically synchronized.
+- TailwindCSS: increased productivity and responsiveness.
 
 ## I use AI to help me
 
-- ChatGPT foi usado para estruturar a base de DDD e gerar exemplos iniciais.
-- Código foi adaptado manualmente para:
-  - Melhor tipagem TypeScript
-  - Separação clara em camadas
-  - Integração com LocalStorage
-- Prompt engineering foi usado para acelerar a escrita de entidades e casos de uso.
+- ChatGPT was used to accelerate the writing of basic entities, repositories, and initial examples.
+- Manual adaptations included:
+  - Improved typing in TypeScript
+  - Integration with LocalStorage
+  - UI refinement with TailwindCSS
+  - Architectural organization
+- All code was manually reviewed and adjusted before delivery.
+
+## If I had more time...
+
+- Advanced filters in the Recipe Gallery
+  - Preparation time range (e.g., up to 15 min, 30 min, 1h+).
+- Estimated cost calculation for the Shopping List
+  - Associate ingredients with average prices.
+  - Show estimated purchase total.
+  - Update automatically as items are selected/deselected.
+- Manually add ingredients and recipes
+  - Field to add items directly to the shopping list.
+  - "New Recipe" button for users to create their own recipes.
+- Recipe import via URL
+  - Service that scrapes or uses an external API to automatically import titles, ingredients, and instructions.
+- Authentication and multi-user system
+  - Simple login (JWT / OAuth).
+  - Each user would have their own planner and list.
+- Real API Integration
+  - Replace JSON seed with an API (FatSecret, Spoonacular, TheMealDB).
+  - Allow recipes to be updated in real time.
+- More advanced nutritional dashboard
+  - Graphs (Recharts or Chart.js) to display macronutrient ratios.
+  - Automatically balanced meal recommendations.
+- Better mobile experience
+  - Drag & drop to plan meals on mobile.
+  - UI optimized for smaller screens.
+- Automated testing
+  - Coverage with Jest + React Testing Library in core components.
+  - Integration tests for use cases (PlanMeal, GenerateShoppingList).
+- Deployment and CI/CD
+  - Automatic deployment to Vercel or Netlify.
+  - GitHub Actions running lint + tests before each PR.

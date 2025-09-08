@@ -1,10 +1,9 @@
-// src/Presentation/components/ShoppingListView.tsx
-import type { ShoppingList } from "../../Domain/Entities/ShoppingList";
+import { ShoppingList } from "../../Domain/Entities/ShoppingList";
 
 interface Props {
   shoppingList: ShoppingList;
-  onToggle?: (category: string, name: string) => void; // opcional
-  setShoppingList?: (s: ShoppingList) => void;         // legado opcional
+  onToggle?: (category: string, name: string) => void;
+  setShoppingList?: (s: ShoppingList) => void;
 }
 
 export function ShoppingListView({ shoppingList, onToggle, setShoppingList }: Props) {
@@ -16,7 +15,6 @@ export function ShoppingListView({ shoppingList, onToggle, setShoppingList }: Pr
       return;
     }
     if (setShoppingList) {
-      // modo legado: muta e força nova instância para re-render
       const snap = shoppingList.getSnapshot();
       const next = ShoppingList.fromSnapshot(snap);
       next.toggleHave(category, name);

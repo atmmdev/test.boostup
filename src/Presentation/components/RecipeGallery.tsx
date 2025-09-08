@@ -1,4 +1,3 @@
-// src/Presentation/components/RecipeGallery.tsx
 import { useMemo } from "react";
 import type { Recipe } from "../../Domain/Entities/Recipe";
 import { RecipeCard } from "./RecipeCard";

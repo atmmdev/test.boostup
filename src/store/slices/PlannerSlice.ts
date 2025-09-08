@@ -1,4 +1,3 @@
-// src/store/slices/plannerSlice.ts
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { Recipe } from "../../Domain/Entities/Recipe";

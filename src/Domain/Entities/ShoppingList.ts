@@ -1,4 +1,3 @@
-// src/Domain/Entities/ShoppingList.ts
 import type { Ingredient } from "./Recipe";
 
 type ItemEntry = { ingredient: Ingredient; have: boolean };
@@ -11,7 +10,6 @@ export class ShoppingList {
     this.items = initial ? ShoppingList.deepCopy(initial) : {};
   }
 
-  /** Clona profundamente a estrutura (para imutabilidade no React) */
   private static deepCopy(data: ItemsByCategory): ItemsByCategory {
     const copy: ItemsByCategory = {};
     for (const cat of Object.keys(data)) {
@@ -23,12 +21,10 @@ export class ShoppingList {
     return copy;
   }
 
-  /** Serializa um snapshot profundo para poder recriar a lista mais tarde */
   getSnapshot(): ItemsByCategory {
     return ShoppingList.deepCopy(this.items);
   }
 
-  /** Soma total de itens (usado no badge do Sidebar) */
   getTotalCount(): number {
     return Object.values(this.items).reduce((acc, arr) => acc + arr.length, 0);
   }
@@ -44,7 +40,6 @@ export class ShoppingList {
       );
 
       if (existing) {
-        // concatena quantidades
         existing.ingredient.quantity += ` + ${ing.quantity}`;
       } else {
         this.items[ing.category].push({ ingredient: { ...ing }, have: false });
@@ -77,7 +72,6 @@ export class ShoppingList {
     this.items[category].push({ ingredient: { ...ingredient }, have: false });
   }
 
-  /** Factory: recria a lista a partir de um snapshot */
   static fromSnapshot(snapshot: ItemsByCategory): ShoppingList {
     return new ShoppingList(snapshot);
   }

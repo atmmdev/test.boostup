@@ -18,29 +18,62 @@ import {
 
 import { LocalStoragePlannerRepository } from "../../Infrastructure/Repositories/LocalStoragePlannerRepository";
 import { LocalStorageRecipeRepository } from "../../Infrastructure/Repositories/LocalStorageRecipeRepository";
+import { LocalStorageIngredientRepository } from "../../Infrastructure/Repositories/LocalStorageIngredientRepository";
 
 export function Dashboard() {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [tab, setTab] = useState<"dashboard" | "planner" | "list">("dashboard");
 
   const [query, setQuery] = useState("");
-  const [mealFilter, setMealFilter] = useState<"all" | "breakfast" | "lunch" | "dinner">("all");
+  const [mealFilter, setMealFilter] = useState<
+    "all" | "breakfast" | "lunch" | "dinner"
+  >("all");
 
   const [planner, setPlanner] = useState<Planner>(() => makeEmptyPlanner());
   const [shoppingList, setShoppingList] = useState<ShoppingList | null>(null);
   const [selected, setSelected] = useState<Recipe | null>(null);
 
-  // Repositórios
   const recipeRepo = useMemo(() => new LocalStorageRecipeRepository(), []);
   const plannerRepoRef = useRef<LocalStoragePlannerRepository>();
+  const ingredientRepo = useMemo(
+    () => new LocalStorageIngredientRepository(),
+    []
+  );
 
-  // Seed de receitas + carga do planner
+  useEffect(() => {
+    (async () => {
+      const items = await ingredientRepo.getAll();
+      if (items.length) {
+        const list = new ShoppingList();
+        for (const entry of items) {
+          list.addItem(entry.ingredient.category, entry.ingredient);
+          if (entry.have)
+            list.toggleHave(entry.ingredient.category, entry.ingredient.name);
+        }
+        setShoppingList(list);
+      }
+    })();
+  }, [ingredientRepo]);
+
+  useEffect(() => {
+    if (!shoppingList) return;
+    (async () => {
+      const items = shoppingList.getItems();
+      const flat = Object.keys(items).flatMap((cat) =>
+        items[cat].map((entry) => ({
+          ingredient: entry.ingredient,
+          have: entry.have,
+        }))
+      );
+      await ingredientRepo.saveAll(flat);
+    })();
+  }, [shoppingList, ingredientRepo]);
+
   useEffect(() => {
     let cancelled = false;
 
     (async () => {
       try {
-        // 1) Seed das receitas
         const existing = await recipeRepo.getAll();
         if (!existing.length) {
           for (const r of recipesData as Recipe[]) {
@@ -50,7 +83,6 @@ export function Dashboard() {
         const allRecipes = await recipeRepo.getAll();
         if (!cancelled) setRecipes(allRecipes);
 
-        // 2) Carregar planner (depois do seed)
         const repo = new LocalStoragePlannerRepository(recipeRepo);
         plannerRepoRef.current = repo;
         const loaded = await repo.load();
@@ -69,13 +101,11 @@ export function Dashboard() {
     };
   }, [recipeRepo]);
 
-  // Auto-save do planner
   useEffect(() => {
     if (!plannerRepoRef.current) return;
     void plannerRepoRef.current.save(planner);
   }, [planner]);
 
-  // Adicionar ingredientes (card -> ShoppingList)
   const handleAddToBuy = (r: Recipe) => {
     setShoppingList((prev) => {
       const next = prev
@@ -86,7 +116,6 @@ export function Dashboard() {
     });
   };
 
-  // Planejar receita em dia/slot
   const handlePlan = (day: Day, slot: Slot, recipe: Recipe) => {
     if (!recipe?.id) {
       console.error("Recipe sem id, não pode salvar no planner", recipe);

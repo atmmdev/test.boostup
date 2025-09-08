@@ -10,7 +10,6 @@ export function RecipeModal({ recipe, onClose }: Props) {
   const [timer, setTimer] = useState(0);
   const [running, setRunning] = useState(false);
 
-  // rating + notes
   function getKey(id: string) {
     return `recipe_meta_${id}`;
   }
@@ -66,28 +65,6 @@ export function RecipeModal({ recipe, onClose }: Props) {
               <li key={idx}>{step}</li>
             ))}
           </ol>
-        </div>
-
-        {/* Timer */}
-        <div className="flex items-center gap-2 text-sm">
-          <span>
-            Timer: {Math.floor(timer / 60)}:{String(timer % 60).padStart(2, "0")}
-          </span>
-          <button
-            className="px-2 py-1 border rounded"
-            onClick={() => setRunning((r) => !r)}
-          >
-            {running ? "Pause" : "Start"}
-          </button>
-          <button
-            className="px-2 py-1 border rounded"
-            onClick={() => {
-              setTimer(0);
-              setRunning(false);
-            }}
-          >
-            Reset
-          </button>
         </div>
 
         {/* Rating & Notes */}

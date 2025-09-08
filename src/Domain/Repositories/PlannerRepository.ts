@@ -1,4 +1,3 @@
-// src/Domain/Repositories/PlannerRepository.ts
 import type { Planner } from "../Entities/Planner";
 
 export interface PlannerRepository {

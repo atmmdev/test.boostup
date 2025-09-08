@@ -1,4 +1,3 @@
-// src/store/slices/shoppingSlice.ts
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { ShoppingList } from "../../Domain/Entities/ShoppingList";

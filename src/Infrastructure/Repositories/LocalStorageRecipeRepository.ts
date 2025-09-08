@@ -1,4 +1,3 @@
-// src/Infrastructure/Repositories/LocalStorageRecipeRepository.ts
 import type { RecipeRepository } from "../../Domain/Repositories/RecipeRepository";
 import type { Recipe } from "../../Domain/Entities/Recipe";
 

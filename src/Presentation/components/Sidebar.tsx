@@ -1,4 +1,3 @@
-// src/Presentation/components/Sidebar.tsx
 interface SidebarProps {
   tab: "dashboard" | "planner" | "list";
   setTab: (t: "dashboard" | "planner" | "list") => void;

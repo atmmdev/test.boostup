@@ -1,4 +1,3 @@
-// src/Presentation/components/RecipeCard.tsx
 import { useState } from "react";
 import type { Recipe } from "../../Domain/Entities/Recipe";
 import { days, slots, type Day, type Slot } from "./_plannerTypes";
@@ -69,7 +68,7 @@ export function RecipeCard({ recipe, onSelect, onAdd, onPlan }: Props) {
             </small>
           </div>
 
-          {/* Mini-form para escolher dia/slot */}
+          {/* Mini-form day/slot */}
           {openPlan && (
             <div className="mt-3 p-3 flex flex-col sm:flex-row gap-2 items-start sm:items-center">
               <label className="text-xs">
